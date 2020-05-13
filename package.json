@@ -1,0 +1,15 @@
+{
+  "name": "forum",
+  "version": "1.0.0",
+  "description": "Projeto para estudar. Um site de perguntas e respostas como o Yahoo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arthur P. Braga",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.2",
+    "express": "^4.17.1"
+  }
+}
