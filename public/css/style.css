@@ -5,3 +5,23 @@ body{
 main{
     margin-top: 5vh;
 }
+
+.card{
+    width: auto;
+    margin-bottom: 20px;
+}
+
+/*Navbar*/
+.navbar li{
+    list-style:  none;
+}
+
+.navbar li a{
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.navbar li a:hover {
+    border-bottom: 2px solid blue;
+}
