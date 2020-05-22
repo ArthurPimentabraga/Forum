@@ -2,6 +2,11 @@ body{
     background-color: #eceff1;
 }
 
+p, h2{
+    padding: 0;
+    margin: 0;
+}
+
 main{
     margin-top: 5vh;
 }
@@ -24,4 +29,40 @@ main{
 
 .navbar li a:hover {
     border-bottom: 2px solid blue;
+}
+
+/*Page Answer*/
+.cardQuestion{
+    background-color: #353941;
+    color: #FFFFFF;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.cardQuestion h2{
+    margin-bottom: 10px;
+}
+
+.cardWriteAnswer{
+    background-color: #FFFFFF;
+    color: #353941;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.cardAnswers {
+    background-color: #353941;
+    color: #FFFFFF;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Footer */
+footer{
+    text-align: center;
+    background-color: #353941;
+    padding: 40px 0px;
+    color: #FFFFFF;
+    margin-top: 5vh;
 }
