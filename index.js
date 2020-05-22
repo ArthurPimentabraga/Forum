@@ -2,14 +2,14 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./database/connection');
-const perguntaModel = require('./database/Pergunta');
-const respostaModel = require('./database/Resposta');
+const questionModel = require('./database/Question');
+const answerModel = require('./database/Answer');
 
 //Connection MySql
 connection
     .authenticate()
     .then(() => {
-        console.log("Conexão feita com sucesso!");
+        console.log("Connection success!");
     })
     .catch((msgError) => {
         console.log(msgError);
@@ -25,45 +25,45 @@ app.use(bodyParser.json());
 
 //Rotas
 app.get("/", (req, res) => {
-    perguntaModel.findAll({ raw: true, order:[
+    questionModel.findAll({ raw: true, order:[
         ['id','DESC']
-    ]}).then(perguntas => {
+    ]}).then(questions => {
         res.render("index",{
-            perguntas: perguntas
+            questions: questions
         });
     });
 });
 
-app.get("/perguntar", (req, res) => {
-    res.render("perguntar");
+app.get("/toAsk", (req, res) => {
+    res.render("toAsk");
 });
 
 app.post("/saveQuestion", (req, res) => {
     var title = req.body.title;
     var description = req.body.question;
     
-    perguntaModel.create({
-        titulo: title,
-        descricao: description
+    questionModel.create({
+        title: title,
+        description: description
     }).then(() => {
         res.redirect("/")
     });
 });
 
-app.get("/pergunta/:id", (req, res) => {
+app.get("/question/:id", (req, res) => {
     var id = req.params.id;
 
-    perguntaModel.findOne({
+    questionModel.findOne({
         where: {id: id}
-    }).then(pergunta => {
-        if (pergunta != undefined) {
-            respostaModel.findAll({
-                where: {perguntaId: pergunta.id},
+    }).then(question => {
+        if (question != undefined) {
+            answerModel.findAll({
+                where: {questionId: question.id},
                 order: [['id','DESC']]
-            }).then(respostas => {
-                res.render("pergunta", {
-                    pergunta: pergunta,
-                    respostas: respostas
+            }).then(answers => {
+                res.render("question", {
+                    question: question,
+                    answers: answers
                 });
             });
         }
@@ -73,23 +73,23 @@ app.get("/pergunta/:id", (req, res) => {
     });
 });
 
-app.post("/responder", (req, res) => {
-    var corpo = req.body.corpo;
-    var perguntaId = req.body.perguntaId;
+app.post("/saveReply", (req, res) => {
+    var body = req.body.body;
+    var questionId = req.body.questionId;
     
-    respostaModel.create({
-        corpo: corpo,
-        perguntaId: perguntaId
+    answerModel.create({
+        body: body,
+        questionId: questionId
     }).then(() => {
-        res.redirect("/pergunta/"+perguntaId)
+        res.redirect("/question/"+questionId)
     });
 });
 
 app.listen(8080, (erro) => {
     if (erro) {
-        console.log("Erro ao iniciar o servidor!");
+        console.log("Error when starding the server!");
     }
     else{
-        console.log("Servidor iniciado!");
+        console.log("Server Started!");
     }
 });

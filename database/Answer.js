@@ -1,17 +1,17 @@
 const Sequelize = require('sequelize');
 const connection = require('./connection');
 
-const Resposta = connection.define('resposta', {
-    corpo: {
+const Answer = connection.define('answer', {
+    body: {
         type: Sequelize.TEXT,
         allowNull: false
     },
-    perguntaId: {
+    questionId: {
         type: Sequelize.INTEGER,
         allowNull: false
     }
 });
 
-Resposta.sync({ force: false });
+Answer.sync({ force: false });
 
-module.exports = Resposta;
+module.exports = Answer;

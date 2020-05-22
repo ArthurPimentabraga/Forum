@@ -8,8 +8,8 @@
 
             <div class="row cardQuestion">
                 <div class="col-12">
-                    <h2><%= pergunta.titulo %></h2>
-                    <p><%= pergunta.descricao %></p>
+                    <h2><%= question.title %></h2>
+                    <p><%= question.description %></p>
                 </div>
             </div>
 
@@ -19,10 +19,10 @@
                 <div class="col-12">
                     <h4>Responda</h4>
             
-                    <form action="/responder" method="POST">
+                    <form action="/saveReply" method="POST">
                         <label>Digite sua resposta:</label>
-                        <textarea name="corpo" id="" class="form-control" rows="5" placeholder="Digite sua resposta aqui"></textarea><br>
-                        <input type="hidden" name="perguntaId" value="<%= pergunta.id %>">
+                        <textarea name="body" id="" class="form-control" rows="5" placeholder="Digite sua resposta aqui"></textarea><br>
+                        <input type="hidden" name="questionId" value="<%= question.id %>">
                         <button type="submit" class="btn btn-dark float-right">Responder</button>
                     </form>
                 </div>
@@ -31,10 +31,10 @@
             <hr>
             <h4>Respostas:</h4>
 
-            <% respostas.forEach(resposta => { %>
+            <% answers.forEach(answer => { %>
                 <div class="row cardAnswers">
                     <div class="col-12">
-                        <p><%= resposta.corpo %></p>
+                        <p><%= answer.body %></p>
                     </div>
                 </div>
             <% }) %>

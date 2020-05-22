@@ -1,17 +1,17 @@
 const Sequelize = require('sequelize');
 const connection = require('./connection');
 
-const Pergunta = connection.define('pergunta', {
-    titulo:{
+const Question = connection.define('question', {
+    title:{
         type: Sequelize.STRING,
         allowNull: false
     },
-    descricao:{
+    description:{
         type: Sequelize.TEXT,
         allowNull: false
     }
 });
 
-Pergunta.sync({force: false});
+Question.sync({force: false});
 
-module.exports = Pergunta;
+module.exports = Question;
